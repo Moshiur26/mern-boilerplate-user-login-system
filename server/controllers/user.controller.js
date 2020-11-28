@@ -16,9 +16,11 @@ const create = async (req, res) => {
     }
 }
 const list = async (req, res) => {
+    console.log(">>>>>:->This is list..server side.........");
+    
     try {
         let users = await User.find().select('name email updated created')
-        res.json(users)
+        return res.json(users)
     } catch (err) {
         return res.status('400').json({
             error: errorHandler.getErrorMessage(err)
