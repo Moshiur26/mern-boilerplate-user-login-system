@@ -16,8 +16,6 @@ const create = async (req, res) => {
     }
 }
 const list = async (req, res) => {
-    console.log(">>>>>:->This is list..server side.........");
-    
     try {
         let users = await User.find().select('name email updated created')
         return res.json(users)
