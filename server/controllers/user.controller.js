@@ -53,7 +53,7 @@ const update = async (req, res) => {
         await user.save()
         user.hashed_password = undefined
         user.salt = undefined
-        res.json(user)
+        return res.json(user)
     } catch (err) {
         res.status('400').json({
             error: errorHandler.getErrorMessage(err)
@@ -66,7 +66,7 @@ const remove = async (req, res) => {
         let delateUser = await user.remove()
         delateUser.hashed_password = undefined
         delateUser.salt = undefined
-        res.json(delateUser)
+        return res.json(delateUser)
         } catch (err) {
             return res.status('400').json({
                 error: errorHandler.getErrorMessage(err)

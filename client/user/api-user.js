@@ -33,7 +33,7 @@ const read = async (params, credentials, signal) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + credentials.t
+                'Authorization': 'Bearer ' + credentials.t
             }
         })
         return response.json()
@@ -49,27 +49,30 @@ const update = async (params, credentials, user) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + credentials.t
+                'Authorization': 'Bearer ' + credentials.t
             },
             body: JSON.stringify(user)
         })
-        return response.json()
+        console.log("response: ",response);
+        return await response.json()
     } catch (err) {
         console.log(err);
     }
 }
 
 const remove = async (params, credentials) => {
+    // console.log(">>>>credentials:>>:-> ",credentials);
     try {
         let response = await fetch('/api/users/' + params.userId, {
-            method: 'DELETE',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + credentials.t
+                'Authorization': 'Bearer ' + credentials.t
             },
         })
-        return response.json()
+        // console.log("Remove Response: ", response);
+        return await response.json()
     } catch (err) {
         console.log(err);
     }
